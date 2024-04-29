@@ -1,0 +1,67 @@
+<mvc:View controllerName="zappvkt.controller.View1"
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:shelbar="sap.f"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:u="sap.ui.unified">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <smartFilterBar:SmartFilterBar id="SF_CURSOS" persistencyKey="UniqueAndStablePersistencyKey" entitySet="CursosSet">
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration1" key="Idcurso" index="0" label="Id Curso" groupId="_BASIC" width="auto" visibleInAdvancedArea="true">     
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration2" key="Nomecurso" index="1" label="Nomecurso" groupId="_BASIC" width="auto" visibleInAdvancedArea="true" />
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+            <MultiInput id="idCursosHelp" valueHelpRequest=".onValueHelpCurso" width="60%" suggestionRows="{	path: '/ZshCursosVktSet', length: 10 }">
+                <suggestionColumns>
+                    <Column id="_IDGenColumn1">
+                        <Label id="_IDGenLabel1" text="Idcurso"/>
+                    </Column>
+                    <Column id="_IDGenColumn2">
+                        <Label id="_IDGenLabel2" text="Nomecurso"/>
+                    </Column>
+                    <Column id="_IDGenColumn3">
+                        <Label id="_IDGenLabel5" text="Duracao"/>
+                    </Column>
+                </suggestionColumns>
+                <suggestionRows>
+                    <ColumnListItem id="_IDGenColumnListItem2">
+                        <Label id="_IDGenLabel3" text="{Idcurso}" />
+                        <Label id="_IDGenLabel4" text="{Nomecurso}" />
+                        <Label id="_IDGenLabel6" text="{Duracao}" />
+                    </ColumnListItem>
+                </suggestionRows>
+            </MultiInput>
+            <smartTable:SmartTable entitySet="CursosSet" smartFilterId="SF_CURSOS" enableExport="true" useVariantManagement="true" useTablePersonalisation="true" header="Cursos" showRowCount="true" showFullScreenButton="true" enableAutoBinding="true" requestAtLeastFields="Idcurso,Nomecurso,Duracao" initiallyVisibleFields="Idcurso,Nomecurso,Duracao" beforeRebindTable="onBeforeRebindTable" tableType="Table" id="SmartTable">
+                <smartTable:customToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar1" design="Transparent">
+                        <!-- <u:FileUploader id="_IDGenFileUploader1" name="myFileUpload" change="onChangeArquivo" /> -->
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                        <OverflowToolbarButton id="btDetalhe" icon="sap-icon://detail-view" press="onDetail" />
+                        <!-- <OverflowToolbarButton id="btEdit" icon="sap-icon://edit" press="onEdit" /> -->
+                        <OverflowToolbarButton id="btAdd" icon="sap-icon://add" press="onAdicionar" />
+                        <!-- <OverflowToolbarButton id="btDelete" icon="sap-icon://delete" press="onDeleta" /> -->
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <Table id="idTable" growing="true" mode="SingleSelect">
+                    <ColumnListItem id="_IDGenColumnListItem1" highlight="Success" />
+                </Table>
+                <smartTable:layoutData>
+                    <FlexItemData id="_IDGenFlexItemData1" growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+            </smartTable:SmartTable>
+        </content>
+        <!-- <footer>
+            <Toolbar id="idOverTollbar">
+                <Button press="handleMessagePopoverPress" text="Mensagens {Auxiliar>/Menssagens/length}" icon="sap-icon://message-popup" id="messagePopoverBtn" tooltip="Mensagens" visible="true" iconFirst="true" />
+                <ToolbarSpacer id="idToolbarSpacerD" />
+            </Toolbar>
+        </footer> -->
+    </Page>
+</mvc:View>

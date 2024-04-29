@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog"
+    xmlns:m="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core">
+    <ValueHelpDialog id="idcursos" title="Cursos" ok=".onValueHelpOkPressA" cancel=".onValueHelpCancelPressA" supportRanges="false" key="Idcurso" supportMultiselect="false" descriptionKey="Nome">
+        <filterBar>
+            <fb:FilterBar id="idfilterbarAgent" advancedMode="true" search=".onFilterBarSearchIdCurso" isRunningInValueHelpDialog="true">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem id="idfiltergropAgent1" groupName="__$INTERNAL$" name="Idcurso" label="IdCurso" visibleInFilterBar="true">
+                        <fb:control>
+                            <m:Input id="idinputsearchAgent1" name="Idcurso" />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem id="idfiltergropAgent2" groupName="__$INTERNAL$" name="Nomecurso" label="Nome do Curso" visibleInFilterBar="true">
+                        <fb:control>
+                            <m:Input id="idinputsearchAgent2" name="Nomecurso" />
+                        </fb:control>
+                    </fb:FilterGroupItem>          
+                    <fb:FilterGroupItem id="idfiltergropAgent3" groupName="__$INTERNAL$" name="Duracao" label="Ducação" visibleInFilterBar="true">
+                        <fb:control>
+                            <m:Input id="idinputsearchAgent3" name="Duracao" />
+                        </fb:control>
+                    </fb:FilterGroupItem>          
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+        </filterBar>
+    </ValueHelpDialog>
+</core:FragmentDefinition>

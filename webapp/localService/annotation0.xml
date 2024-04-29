@@ -1,0 +1,29 @@
+<Annotations Target="ZG_APP_FIORI_VKT_SRV.Cursos/Idcurso">
+    <Annotations Target="ZG_APP_FIORI_VKT_SRV.Cursos/Idcurso"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+            <Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+                <PropertyValue Property="CollectionPath" String="ZshCursosVktSet"/>
+                <PropertyValue Property="SearchSupported" Bool="true"/>
+                <PropertyValue Property="Parameters">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+                            <PropertyValue Property="LocalDataProperty" PropertyPath="Idcurso"/>
+                            <PropertyValue Property="ValueListProperty" String="Idcurso"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                            <PropertyValue Property="ValueListProperty" String="Nomecurso"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                            <PropertyValue Property="ValueListProperty" String="Duracao"/>
+                        </Record>
+                    </Collection>
+                </PropertyValue>
+            </Record>
+        </Annotation>
+    </Annotations>
+    <Annotations Target="ZG_APP_FIORI_VKT_SRV.Cursos"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="com.sap.vocabularies.Common.v1.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+    </Annotations>
+</Annotations>
