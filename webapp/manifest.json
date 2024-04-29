@@ -20,9 +20,7 @@
         "uri": "/sap/opu/odata/sap/ZG_APP_FIORI_VKT_SRV/",
         "type": "OData",
         "settings": {
-          "annotations": [
-            "annotation0"
-          ],
+          "annotations": ["annotation0"],
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
@@ -81,7 +79,9 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "useBatch": false
+        }
       }
     },
     "resources": {
@@ -108,6 +108,13 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name" : "RouteDet",
+          "pattern": "Alunos/{Idcurso}",
+          "target": [
+            "TargetDet"
+          ]
         }
       ],
       "targets": {
@@ -117,6 +124,13 @@
           "clearControlAggregation": false,
           "viewId": "View1",
           "viewName": "View1"
+        },
+        "TargetDet": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Detalhe",
+          "viewName": "Detalhe"
         }
       }
     },

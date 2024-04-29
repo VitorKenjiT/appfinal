@@ -1,0 +1,48 @@
+<mvc:View xmlns:layout="sap.ui.layout" controllerName="zappvkt.controller.Detalhe"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:shelbar="sap.f"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:u="sap.ui.unified">
+    <Page id="page" title="{i18n>titleDet}">
+        <customHeader>
+            <shelbar:ShellBar id="_IDGenShellBar1" title="Detalhes do Curso" showCopilot="false" showSearch="false" showMenuButton="false" showNotifications="false" homeIcon="../Imagens/logo.jpeg" showProductSwitcher="false" showNavButton="true" navButtonPressed="navButtonPressed" />
+        </customHeader>
+        <content>
+            <ObjectHeader id="_IDGenObjectHeader1" title="{Idcurso}" class="sapUiResponsivePadding--header">
+                <ObjectAttribute id="_IDGenObjectAttribute1" text="Nome do Curso: {Nomecurso}" active="false" />
+                <ObjectAttribute id="_IDGenObjectAttribute2" text="Duração: {Duracao} horas" active="false" />
+                <!-- <ObjectAttribute id="_IDGenObjectAttribute2" text="{Duracao} Horas" active="false" /> -->
+            </ObjectHeader>
+
+            <smartTable:SmartTable entitySet="AlunosSet" smartFilterId="SF_DET" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" header="Lista de alunos no curso" showRowCount="true" showFullScreenButton="true" enableAutoBinding="true" requestAtLeastFields="Idaluno,Nomealuno,Ativo" initiallyVisibleFields="Idaluno,Nomealuno,Ativo" 
+                                   beforeRebindTable="onBeforeRebindTable" tableType="Table" id="SmartTable">
+                <smartTable:customToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar1" design="Transparent">
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                        <!-- <OverflowToolbarButton id="btEdit" icon="sap-icon://edit" press="onEdit" /> -->
+                        <OverflowToolbarButton id="btAdd" icon="sap-icon://add" press="onAdiciona" />
+                        <OverflowToolbarButton id="btDelete" icon="sap-icon://delete" press="onDeleta" />
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <Table id="idTable" growing="true" mode="MultiSelect">
+                    <ColumnListItem id="_IDGenColumnListItem1" highlight="Success" />
+                </Table>
+                <smartTable:layoutData>
+                    <FlexItemData id="_IDGenFlexItemData1" growFactor="1" baseSize="0%" />
+                    </smartTable:layoutData>
+                </smartTable:SmartTable>
+            
+        </content>
+            <footer>
+            <Toolbar id="idOverTollbar">
+                <Button press="handleMessagePopoverPress" text="Mensagens {Auxiliar>/Mensagens/length}" icon="sap-icon://message-popup" id="messagePopoverBtn" tooltip="Mensagens" visible="true" iconFirst="true" />
+                <ToolbarSpacer id="idToolbarSpacerD" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -24,7 +24,7 @@ sap.ui.define([
             criaModeloAuxiliar: function () {
                 let oModel = new JSONModel()
                 let objeto = {
-                    Menssagens: [],
+                    Mensagens: [],
                     Editable: false
                 }
 
@@ -46,7 +46,7 @@ sap.ui.define([
 
                 oMessagePopover = new MessagePopover({
                     items: {
-                        path: 'Auxiliar>/Menssagens',
+                        path: 'Auxiliar>/Mensagens',
                         template: oMessageTemplate
                     },
                     activeTitlePress: function () {
@@ -186,80 +186,95 @@ sap.ui.define([
                 this.adicionar.open();
             },
 
-            // CancelarAdicionar: function () {
-            //     this.adicionar.close();
-            // },
+            CancelarAdicionar: function () {
+                this.adicionar.close();
+            },
 
-            // GravaAdicionar: function () {
-            //     let that = this
-            //     let oModel = this.getView().getModel()
-            //     let oModelAuxiliar = this.getView().getModel("Auxiliar")
-            //     let Usuario = this.adicionar.mAggregations.content[0].getValue()
-            //     let Nome = this.adicionar.mAggregations.content[1].getValue()
-            //     let Email = this.adicionar.mAggregations.content[2].getValue()
-            //     let Projeto = this.adicionar.mAggregations.content[3].getValue()
+            GravaAdicionar: function () {
+                let that = this
+                let oModel = this.getView().getModel()
+                let oModelAuxiliar = this.getView().getModel("Auxiliar")
+                let Idcurso = this.adicionar.mAggregations.content[0].getValue()
+                let Nomecurso = this.adicionar.mAggregations.content[1].getValue()
+                let Duracao = this.adicionar.mAggregations.content[2].getValue()
 
-            //     var oDados = {
-            //         "Idcurso": Idcurso
-            //     }
+                var oDados = {
+                    "Idcurso": Idcurso
+                }
 
-            //     this.getView().getModel().callFunction('/GetCursoExist', {                    
-            //         method: "GET",
-            //         urlParameters: oDados,
-            //         success: function (oData, oReponse) {
-            //             if (oData.Ok === '') {
-            //                 sap.m.MessageBox.alert("Confirma a inclusão?", {
-            //                     actions: ["Sim", "Não"],
-            //                     onClose: function (sAction) {
-            //                         if (sAction == "Sim") {
-            //                             let objeto = {
-            //                                 Idcurso: Idcurso,
-            //                                 Nomecurso: Nomecurso,
-            //                                 Duracao: Duracao
-            //                             }
-            //                             oModel.create('/CursosSet', objeto, {
-            //                                 success: function (oData, oReponse) {
-            //                                     let arrayMsg = {
-            //                                         type: "Success",
-            //                                         title: "Aluno incluido com sucesso !!!",
-            //                                         activeTitle: true,
-            //                                         description: "O aluno " + Usuario + " foi incluido com sucesso!!!",
-            //                                     }
-            //                                     // oModelAuxiliar.oData.Menssagens.push(arrayMsg);
-            //                                     // oModelAuxiliar.refresh(true);
+                this.getView().getModel().callFunction('/GetCursoExist', {                    
+                    method: "GET",
+                    urlParameters: oDados,
+                    success: function (oData, oReponse) {
+                        if (oData.OK === '') {
+                            sap.m.MessageBox.alert("Confirma a inclusão?", {
+                                actions: ["Sim", "Não"],
+                                onClose: function (sAction) {
+                                    if (sAction == "Sim") {
+                                        let objeto = {
+                                            Idcurso: Idcurso,
+                                            Nomecurso: Nomecurso,
+                                            Duracao: Duracao
+                                        }
+                                        oModel.create('/CursosSet', objeto, {
+                                            success: function (oData, oReponse) {
+                                                let arrayMsg = {
+                                                    type: "Success",
+                                                    title: "Curso incluido com sucesso !!!",
+                                                    activeTitle: true,
+                                                    description: "O curso " + Idcurso + "-" + Nomecurso + " foi incluido com sucesso!",
+                                                }
+                                                oModelAuxiliar.oData.Mensagens.push(arrayMsg);
+                                                oModelAuxiliar.refresh(true);
 
-            //                                     // that.byId("messagePopoverBtn").setType("Accept");
-            //                                     // oMessagePopover.openBy(that.getView().byId("messagePopoverBtn"));
-            //                                     that.CancelarAdicionar()
-            //                                 },
-            //                                 error: function (oError) {
-            //                                     // let arrayMsg = {
-            //                                     //     type: "Error",
-            //                                     //     title: "Erro ao incluir aluno !!!",
-            //                                     //     activeTitle: true,
-            //                                     //     description: "Erro ao incluir aluno " + Usuario + " !!!",
-            //                                     // }
-            //                                     // oModelAuxiliar.oData.Menssagens.push(arrayMsg);
-            //                                     // oModelAuxiliar.refresh(true);
+                                                that.byId("messagePopoverBtn").setType("Accept");
+                                                oMessagePopover.openBy(that.getView().byId("messagePopoverBtn"));
+                                                that.CancelarAdicionar()
+                                            },
+                                            error: function (oError) {
+                                                let arrayMsg = {
+                                                    type: "Error",
+                                                    title: "Erro ao incluir curso !!!",
+                                                    activeTitle: true,
+                                                    description: "Erro ao incluir curso " + Idcurso + "-" + Nomecurso + "!",
+                                                }
+                                                oModelAuxiliar.oData.Mensagens.push(arrayMsg);
+                                                oModelAuxiliar.refresh(true);
 
-            //                                     // that.byId("messagePopoverBtn").setType("Accept");
-            //                                     // oMessagePopover.openBy(that.getView().byId("messagePopoverBtn"));
-            //                                 }
-            //                             });
-            //                         }
-            //                     }
-            //                 })
-            //             } else {
-            //                 sap.m.MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("msgErroAlunoExist"));
-            //             }
-            //         },
-            //         error: function (oError) {
-            //             sap.m.MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("lblMsgCreateError"));
-            //         }
-            //     });
+                                                that.byId("messagePopoverBtn").setType("Accept");
+                                                oMessagePopover.openBy(that.getView().byId("messagePopoverBtn"));
+                                            }
+                                        });
+                                    }
+                                }
+                            })
+                        } else {
+                            sap.m.MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("msgErroCursoExist"));
+                        }
+                    },
+                    error: function (oError) {
+                        sap.m.MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("lblMsgCreateError"));
+                    }
+                });
 
+            },
 
-            // },
+            onDetail: function () {
+                let Table = this.getView().byId("idTable")
+                let selecionados = Table.getSelectedItems();
+                if (selecionados.length > 0) {
+                    if (selecionados.length > 1) {
+                        sap.m.MessageBox.error("Selecionar apenas um curso para exibir os detalhes!")
+                    } else {
+                        let Idcurso = selecionados[0].mAggregations.cells[0].getProperty("text")
+
+                        this.getRouter().navTo("RouteDet", {
+                            Idcurso
+                        });
+                    }
+                }
+
+            },
 
         });
 
